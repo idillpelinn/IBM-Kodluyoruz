@@ -6,22 +6,31 @@ Created on Wed Oct 16 17:52:34 2024
 """
 import math
 
+# Noktaların Tanımlanması
 points = [
-    ((1, 2), (4, 6)),  # 1. nokta çifti
-    ((7, 0), (3, 4)),  # 2. nokta çifti
-    ((-1, -1), (2, 3)),  # 3. nokta çifti
-    ((2, 3), (5, 7))  # 4. nokta çifti
+    (1, 2),
+    (4, 6),
+    (0, 0),
+    (3, 4),
+    (-1, -1),
+    (2, 3),
+    (5, 7)
 ]
-def euclideanDistance(points):
-    (x1, y1), (x2, y2) = points
-    distance = math.sqrt(((x2 - x1) ** 2) + ((y2 - y1) ** 2))
+
+# Öklid Mesafesi İçin Fonksiyon
+def euclideanDistance(point1, point2):
+    (x1, y1) = point1
+    (x2, y2) = point2
+    distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
     return distance
 
-distances=[]
-for i in points:
-    distance = euclideanDistance(i)
-    distances.append(distance)
+# Mesafelerin Hesaplanması
+distances = []
+for i in range(len(points)):
+    for j in range(i + 1, len(points)):
+        distance = euclideanDistance(points[i], points[j])
+        distances.append(distance)
 
-distances.sort()
-
-print(distances[0])
+# Minimum Mesafenin Bulunması
+min_distance = min(distances)
+print(f"Minimum Mesafe: {min_distance}")
